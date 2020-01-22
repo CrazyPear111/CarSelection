@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+
 using EFGetStarted.Model;
 using EFGetStarted.Controller;
 
@@ -8,25 +11,22 @@ namespace EFGetStarted
 	{
 		static void Main(string[] args)
 		{
-			
-			
-			
-
-			using (var context = new CarContext())
+			while (true)
 			{
-				UserMethod ob = UserMethod.Registration();
+				Console.WriteLine("\t\t\t\tГЛАВНОЕ МЕНЮ");
+				Console.WriteLine("Выберите действие: ");
+				Console.WriteLine("\n1 - Регистрация");
+				Console.WriteLine("2 - Вход");
+				string sw = Console.ReadLine();
 
-				var seller = new Seller()
-				{
-					Address = ob.GetAddressToString(),
-					Name = ob.Name,
-					PhoneNumber = ob.PhoneNumber
-				};
+				if (sw == "1")
+					DBMethod.Registration();
 
-				context.Sellers.Add(seller);
-				context.SaveChanges();
+				if (sw == "2")
+					DBMethod.Login();
 			}
-			
+
+
 		}
 	}
 }

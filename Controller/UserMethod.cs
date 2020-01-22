@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
+using EFGetStarted.Model;
+
 namespace EFGetStarted.Controller
 {
 	class UserMethod
@@ -71,6 +73,30 @@ namespace EFGetStarted.Controller
 			Console.WriteLine("\nРегистрация успешно завершена. Новый профиль добавлен в базу данных.");
 
 			return user;
+		}
+		public static UserMethod Login()
+		{
+			UserMethod user = new UserMethod();
+
+			Console.WriteLine("\t\t\t\tВХОД В АККАУНТ");
+
+			Console.Write("Введите имя: ");
+			user.Name = Console.ReadLine();
+
+			return user;
+		}
+		public void EnableUser(Seller seller)
+		{
+			this.PhoneNumber = seller.PhoneNumber;
+			this.Address.Country = seller.Address;
+		}
+		public void ShowUser()
+		{
+			Console.WriteLine("Вход произведен\n");
+
+			Console.WriteLine("Имя: " + this.Name);
+			Console.WriteLine("Адрес: " + this.GetAddressToString());
+			Console.WriteLine("Номер телефона: " + this.PhoneNumber);
 		}
 		
 		public string GetAddressToString()
